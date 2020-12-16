@@ -1,25 +1,25 @@
-import React, { Component } from "react";
-import "./App.css";
-import SignIn from "./Component/SignIn/SignIn.js";
-import Register from "./Component/Register/Register.js";
-import Particles from "react-particles-js";
-import Logo from "./Component/Logo/Logo.js";
-import Navigation from "./Component/Navi/Navigation.js";
-import ImageLinkForm from "./Component/Form/ImageLinkForm.js";
-import CelebName from "./Component/CelebName/CelebName.js";
-import Clarifai from "clarifai";
-import FaceRecognition from "./Component/Face/FaceRecognition.js";
-import FaceComparison from "./Component/Comparison/FaceComparison.js";
+import React, { Component } from 'react';
+import './App.css';
+import SignIn from './Component/SignIn/SignIn.js';
+import Register from './Component/Register/Register.js';
+import Particles from 'react-particles-js';
+import Logo from './Component/Logo/Logo.js';
+import Navigation from './Component/Navi/Navigation.js';
+import ImageLinkForm from './Component/Form/ImageLinkForm.js';
+import CelebName from './Component/CelebName/CelebName.js';
+import Clarifai from 'clarifai';
+import FaceRecognition from './Component/Face/FaceRecognition.js';
+import FaceComparison from './Component/Comparison/FaceComparison.js';
 
 const app = new Clarifai.App({
-  apiKey: "8054c05761da443d88b4204f457791e6",
+  apiKey: '8054c05761da443d88b4204f457791e6',
 });
 
 const initialState = {
-  input: "",
-  imageUrl: "",
+  input: '',
+  imageUrl: '',
   results: [],
-  route: "SignIn",
+  route: 'SignIn',
   // user: {
   //   id: "",
   //   name: "",
@@ -84,9 +84,9 @@ class App extends Component {
   // };
 
   onRouteChange = (route) => {
-    if (route === "signout") {
+    if (route === 'signout') {
       this.setState({ isSignedIn: false });
-    } else if (route === "home") {
+    } else if (route === 'home') {
       this.setState({ isSignedIn: true });
     }
     this.setState({ route: route });

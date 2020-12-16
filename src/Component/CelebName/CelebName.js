@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const CelebName = ({ results }) => {
   if (results && results.length < 1) {
