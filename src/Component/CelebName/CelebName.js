@@ -1,33 +1,15 @@
-import React from 'react';
+import React from "react";
 
-const Rank = ({results}) => {
-const prediction = results.map((result) => {
-const {ingredients}  = result;
-return (
-    <div>
-        <li className="celebrityName">{ingredients}</li>
-    </div>
-);
-});
-
-if (prediction && prediction.length>1) {
+const CelebName = ({ results }) => {
+  if (results && results.length < 1) {
+    return <div className="pt2">Enter URL to get started...</div>;
+  } else {
     return (
-         <div>
-            <div className='white f3'>
-                You look a lot like...
-                </div>
-            <div className='white f1'>
-            {results}
-            </div>
-        </div>
-        );
-    } else {
-        return (
-            <div>
-        
-        </div>
-        )
-    }
+      <div>
+        You look a lot like <h2>{results}</h2>
+      </div>
+    );
+  }
 };
 
-export default Rank;
+export default CelebName;
