@@ -12,7 +12,7 @@ import FaceRecognition from './Component/Face/FaceRecognition.js';
 import FaceComparison from './Component/Comparison/FaceComparison.js';
 
 const app = new Clarifai.App({
-  apiKey: 'cd0654d3d8654d08868ec03017d7e85a'
+  apiKey: 'DUMBLEDORE'
 });
 
 const initialState = {
