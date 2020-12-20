@@ -37,66 +37,56 @@ const particleOptions = {
         enable: true,
         value_area: 800,
       },
+    },
+  },
+};
 
-    }
-      }
-    }
-
-class App extends Component{
+class App extends Component {
   constructor() {
     super();
     this.state = initialState;
   }
 
     transformResponse = (response) => {
-      const clarifaiResults = response.outputs[0].data.regions[0].data.concepts[0].name;
+      const celebName = response.outputs[0].data.regions[0].data.concepts[0].name;
     
-      const results = clarifaiResults.map((ingredient) => ({
-        ingredients: ingredient.name,
-        probablitiy: ingredient.value,
-      }));
 
-      this.setState({results: results.celebrityName});
-    
-      return {results: []};
+
+      this.setState({results: celebName});
     };
 
   onInputChange = (event) => {
-    this.setState({input: event.target.value});
-
-  }
+    this.setState({ input: event.target.value });  
+};
 
   onSubmit = () => {
-    this.setState({imageUrl: this.state.input});
+    this.setState({ imageUrl: this.state.input });
     app.models
     .predict(
       Clarifai.CELEBRITY_MODEL,
       this.state.input)
-      .then(response => {
-        console.log(response.outputs[0].data.regions[0].data.concepts[0].name)
-        if (response) {
-          fetch ('http://localhost:3000', {
-            method: 'post',
-            headers: {'Conent-Type' : 'application/json'},
-            body: JSON.stringify({
-              input: this.state.user.input
-            })
-          })
-          .then((response) => response.json)
-          .then(count => {
-            this.setState(Object.assign(this.state.user, {entries:count}))
-          })
-          console.log(response.json);
-        }
-        this.transformResponse(response.json());
-      })
-      .catch(err => console.log(err));
-        
-
-      };  
-         
-      ;
-
+      .then((response) => this.transformResponse(response))
+        .catch((err) => console.log(err));
+        };
+       
+    //   if (response) {
+    //     fetch ('http://localhost:3000', {
+    //       method: 'post',
+    //      headers: {'Conent-Type' : 'application/json'},
+    //        body: JSON.stringify({
+    //          input: this.state.user.input
+    //        })
+    //      })
+    //      .then((response) => response.json)
+    //      .then(count => {
+    //        this.setState(Object.assign(this.state.user, {entries:count}))
+    //      })
+    //      console.log(response.json);
+    //    }
+    //    this.transformResponse(response.json());
+    //  })
+    //  .catch(err => console.log(err));
+    //    };  
 
 
     onRouteChange = (route) => {
@@ -106,10 +96,10 @@ class App extends Component{
         this.setState({isSignedIn: true})
       }
       this.setState({route: route});
-    }
+    };
 
   render() { 
-    let { isSignedIn, imageUrl, route, results} = this.state;
+    let { isSignedIn, imageUrl, route, results } = this.state;
     return (
       <div className="App">
             <Particles className='particles'
@@ -128,9 +118,6 @@ class App extends Component{
                     <FaceRecognition 
                     imageUrl={imageUrl}    
                   />
-                  <FaceComparison 
-                    results = {results}
-                  />
                 </div>
               : (
                     route === 'SignIn' 
@@ -141,7 +128,7 @@ class App extends Component{
             }
       </div>
     );
-  };
+  }
 }
 
 export default App;
