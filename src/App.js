@@ -12,7 +12,7 @@ import FaceRecognition from './Component/Face/FaceRecognition.js';
 import FaceComparison from './Component/Comparison/FaceComparison.js';
 
 const app = new Clarifai.App({
-  apiKey: 'DUMBLEDORE'
+  apiKey: 'cd0654d3d8654d08868ec03017d7e85a'
 });
 
 const initialState = {
@@ -20,13 +20,13 @@ const initialState = {
   imageUrl: "",
   results: [],
   route: "SignIn",
+  isSignedIn: false,
   user: {
     id: "",
     name: "",
     email: "",
-    entries: 0,
     joined: "",
-  },
+  }
 };
 
 const particleOptions = {
@@ -41,10 +41,20 @@ const particleOptions = {
   },
 };
 
+
 class App extends Component {
   constructor() {
     super();
     this.state = initialState;
+  }
+
+  loadUser = (data) => {
+    this.setState({user: {
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      joined: data.joined,
+    }})
   }
 
     transformResponse = (response) => {
@@ -122,7 +132,7 @@ class App extends Component {
               : (
                     route === 'SignIn' 
                   ? <SignIn onRouteChange={this.onRouteChange}/>
-                  : <Register />
+                  : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
               )
                
             }
