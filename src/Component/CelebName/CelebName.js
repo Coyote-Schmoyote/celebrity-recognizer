@@ -1,4 +1,5 @@
 import React from 'react';
+import './CelebName.css';
 
 const CelebName = ({results}) => {
     if (results && results.length > 1){
@@ -8,7 +9,7 @@ const CelebName = ({results}) => {
             You look a lot like 
                 </div>
                 <div className = "white f1">
-                    {results}
+                    <a href={"https://www.google.com/images?q="+results} target="_blank" rel="noopener noreferrer">{results}</a>
                 </div>
             </div>
         );

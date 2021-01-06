@@ -1,4 +1,5 @@
 import React from 'react';
+import './FaceComparison.css';
 
 const FaceComparison = ({celebrityName}) => {
         if (celebrityName){
