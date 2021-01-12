@@ -18,14 +18,6 @@ const initialState = {
   input: "",
   imageUrl: "",
   results: [],
-  route: "SignIn",
-  isSignedIn: false,
-  user: {
-    id: "",
-    name: "",
-    email: "",
-    joined: "",
-  }
 };
 
 const particleOptions = {
@@ -46,21 +38,11 @@ class App extends Component {
     super();
     this.state = initialState;
   }
-
-  loadUser = (data) => {
-    this.setState({user: {
-      id: data.id,
-      name: data.name,
-      email: data.email,
-      joined: data.joined,
-    }})
-  }
+};
 
     transformResponse = (response) => {
       const celebName = response.outputs[0].data.regions[0].data.concepts[0].name;
     
-
-
       this.setState({results: celebName});
     };
 
@@ -78,66 +60,26 @@ class App extends Component {
         .catch((err) => console.log(err));
         };
        
-    //   if (response) {
-    //     fetch ('http://localhost:3000', {
-    //       method: 'post',
-    //      headers: {'Conent-Type' : 'application/json'},
-    //        body: JSON.stringify({
-    //          input: this.state.user.input
-    //        })
-    //      })
-    //      .then((response) => response.json)
-    //      .then(count => {
-    //        this.setState(Object.assign(this.state.user, {entries:count}))
-    //      })
-    //      console.log(response.json);
-    //    }
-    //    this.transformResponse(response.json());
-    //  })
-    //  .catch(err => console.log(err));
-    //    };  
-
-
-    onRouteChange = (route) => {
-      if (route === 'signout'){
-        this.setState({isSignedIn: false})
-      } else if (route ==='home'){
-        this.setState({isSignedIn: true})
-      }
-      this.setState({route: route});
-    };
-
+ 
   render() { 
-    let { isSignedIn, imageUrl, route, results } = this.state;
+    let { imageUrl, results } = this.state;
     return (
       <div className="App">
             <Particles className='particles'
              params={particleOptions} 
              />
-            <Navigation isSignedIn={isSignedIn} onRouteChange={this.onRouteChange}/>
-            { route ==='home'  
-              ? <div>
-                  <Logo />
-                  <CelebName 
-                   results = {results}/>
-                  <ImageLinkForm 
+            <Navigation />  
+            <Logo />
+            <CelebName results = {results}/>
+            <ImageLinkForm 
                     onInputChange={this.onInputChange} 
                     onSubmit={this.onSubmit}
                     />
-                    <FaceRecognition 
+             <FaceRecognition 
                     imageUrl={imageUrl}    
                   />
-                </div>
-              : (
-                    route === 'SignIn' 
-                  ? <SignIn onRouteChange={this.onRouteChange}/>
-                  : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
-              )
-               
-            }
       </div>
     );
   }
-}
 
 export default App;
