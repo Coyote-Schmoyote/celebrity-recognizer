@@ -35,8 +35,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = initialState;
-  }
-};
+    }
 
     transformResponse = (response) => {
       const celebName = response.outputs[0].data.regions[0].data.concepts[0].name;
@@ -44,40 +43,40 @@ class App extends Component {
       this.setState({results: celebName});
     };
 
-  onInputChange = (event) => {
-    this.setState({ input: event.target.value });  
-};
+    onInputChange = (event) => {
+      this.setState({ input: event.target.value });  
+    };
 
-  onSubmit = () => {
-    this.setState({ imageUrl: this.state.input });
-    app.models
-    .predict(
-      Clarifai.CELEBRITY_MODEL,
-      this.state.input)
-      .then((response) => this.transformResponse(response))
-        .catch((err) => console.log(err));
-        };
+    onSubmit = () => {
+      this.setState({ imageUrl: this.state.input });
+      app.models
+      .predict(
+        Clarifai.CELEBRITY_MODEL,
+        this.state.input)
+        .then((response) => this.transformResponse(response))
+          .catch((err) => console.log(err));
+    };
        
- 
-  render() { 
+  render () {
     let { imageUrl, results } = this.state;
     return (
       <div className="App">
-            <Particles className='particles'
-             params={particleOptions} 
-             />
-            <Navigation />  
-            <Logo />
-            <CelebName results = {results}/>
-            <ImageLinkForm 
-                    onInputChange={this.onInputChange} 
-                    onSubmit={this.onSubmit}
-                    />
-             <FaceRecognition 
-                    imageUrl={imageUrl}    
-                  />
-      </div>
-    );
+        <Particles className='particles'
+          params={particleOptions} 
+          />
+        <Navigation />  
+        <Logo />
+        <CelebName results = {results}/>
+        <ImageLinkForm 
+          onInputChange={this.onInputChange} 
+          onSubmit={this.onSubmit}
+          />
+        <FaceRecognition 
+          imageUrl={imageUrl}    
+          />
+        </div>
+   );
   }
+};
 
 export default App;
