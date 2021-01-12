@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import SignIn from './Component/SignIn/SignIn.js';
-import Register from './Component/Register/Register.js';
 import Particles from 'react-particles-js';
 import Logo from './Component/Logo/Logo.js';
 import Navigation from './Component/Navi/Navigation.js';
