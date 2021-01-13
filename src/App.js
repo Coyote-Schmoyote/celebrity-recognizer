@@ -55,6 +55,7 @@ class App extends Component {
         this.state.input)
         .then((response) => this.transformResponse(response))
           .catch((err) => console.log(err));
+          document.getElementById('celeb-name').value='';
     };
        
   render () {
@@ -72,7 +73,7 @@ class App extends Component {
           onSubmit={this.onSubmit}
           />
         <FaceRecognition 
-          imageUrl={imageUrl}    
+          imageUrl={imageUrl}   
           />
         </div>
    );
