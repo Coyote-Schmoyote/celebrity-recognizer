@@ -4,15 +4,12 @@ A simple web application based on a project from [ZTM](https://github.com/zero-t
 ## Motivation
 The project was built to learn the basic concepts behind **React and using external API** , and have fun while doing it!
 
-![demo](https://i.postimg.cc/y8yZ0JZn/celeb-recognizer-screenshot.png)
- 
 ## Screenshots
-Include logo/demo screenshot etc.
-
+![demo](https://i.postimg.cc/RCH7FTNy/tomlin.png)
+ 
 ## Tech/framework used
 React JS
 
 ## Credits
 The project uses [Clarifai API](https://www.clarifai.com)
 
-\
